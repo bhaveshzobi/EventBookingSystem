@@ -1,0 +1,38 @@
+﻿<!-- Views/Booking/Dashboard.cshtml -->
+@model IEnumerable<EventBookingSystem.Models.Booking>
+<div class="container mt-4">
+    <h2 class="text-primary">Your Bookings</h2>
+    @if (Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Venue</th>
+                        <th>Tickets Booked</th>
+                        <th>Booking Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var booking in Model)
+                    {
+                        <tr>
+                            <td><a asp-controller="Event" asp-action="Details" asp-route-id="@booking.EventId">@booking.Event.Name</a></td>
+                            <td>@booking.Event.Date.ToShortDateString()</td>
+                            <td>@booking.Event.Venue</td>
+                            <td>@booking.NumberOfTickets</td>
+                            <td>@booking.BookingDate.ToString("MMMM dd, yyyy")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p class="text-muted">You haven't made any bookings yet.</p>
+    }
+    <a asp-controller="Event" asp-action="Index" class="btn btn-outline-primary mt-3">Back to Events</a>
+</div>

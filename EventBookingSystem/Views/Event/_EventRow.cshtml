@@ -1,0 +1,13 @@
+﻿<!-- Views/Event/_EventRow.cshtml -->
+@model EventBookingSystem.Models.Event
+<tr data-event-id="@Model.Id">
+    <td><a asp-action="Details" asp-route-id="@Model.Id">@Model.Name</a></td>
+    <td>@Model.Date.ToShortDateString()</td>
+    <td>@Model.Venue</td>
+    <td>@Model.Type.ToString()</td>
+    <td class="available-seats">@Model.AvailableSeats</td>
+    <td>
+        <input type="number" class="form-control ticket-input d-inline-block w-auto" min="1" max="@Model.AvailableSeats" value="1" @(Model.AvailableSeats == 0 ? "disabled" : "") />
+        <button class="btn btn-sm btn-success book-btn" @(Model.AvailableSeats == 0 ? "disabled" : "")>Book Now</button>
+    </td>
+</tr>

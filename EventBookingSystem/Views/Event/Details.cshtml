@@ -1,0 +1,15 @@
+﻿<!-- Views/Event/Details.cshtml -->
+@model EventBookingSystem.Models.Event
+<div class="container mt-4">
+    <h2 class="text-primary">@Model.Name</h2>
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Date:</strong> @Model.Date.ToString("MMMM dd, yyyy")</p>
+            <p><strong>Venue:</strong> @Model.Venue</p>
+            <p><strong>Type:</strong> @Model.Type.ToString()</p>
+            <p><strong>Total Seats:</strong> @Model.TotalSeats</p>
+            <p><strong>Available Seats:</strong> @Model.AvailableSeats</p>
+        </div>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-primary mt-3">Back to Events</a>
+</div>

@@ -1,0 +1,19 @@
+﻿<!-- Views/Booking/Create.cshtml -->
+@model EventBookingSystem.Models.Booking
+<h2>Book Tickets for @Model.Event.Name</h2>
+<p>Date: @Model.Event.Date.ToShortDateString() | Venue: @Model.Event.Venue | Available Seats: @Model.Event.AvailableSeats</p>
+
+<form asp-action="Create" method="post">
+    <input type="hidden" asp-for="EventId" />
+    <div class="form-group">
+        <label asp-for="NumberOfTickets">Number of Tickets</label>
+        <input asp-for="NumberOfTickets" class="form-control" type="number" min="1" max="@Model.Event.AvailableSeats" required />
+        <span asp-validation-for="NumberOfTickets" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Book Now</button>
+    <a asp-action="Index" asp-controller="Event" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
